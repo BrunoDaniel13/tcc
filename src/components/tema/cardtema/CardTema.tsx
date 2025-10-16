@@ -1,34 +1,38 @@
-import { Link } from 'react-router-dom'
-import type Tema from '../../../models/Temas'
+import { Link } from "react-router-dom";
+import type Tema from "../../../models/Temas";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
-interface CardTemaProps{
-    tema: Tema
+interface CardTemaProps {
+  tema: Tema;
 }
 
 function CardTema({ tema }: CardTemaProps) {
-    return (
-        <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
-            <header className='py-2 px-6 bg-indigo-800 text-white font-bold text-2xl'>
-                Tema
-            </header>
-            <p className='p-8 text-3xl bg-slate-200 h-full'>{tema.descricao}</p>
-            
-            <div className="flex">
-                <Link to={`/editartema/${tema.id}`} 
-                    className='w-full text-slate-100 bg-indigo-400 hover:bg-indigo-800 
-                        flex items-center justify-center py-2'>
-                    <button>Editar</button>
-                </Link>
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-200">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+        {/* Descrição do tema */}
+        <h3 className="text-xl font-bold text-indigo-700 mb-2 sm:mb-0">
+          {tema.descricao}
+        </h3>
 
-                <Link to={`/deletartema/${tema.id}`} 
-                    className='text-slate-100 bg-red-400 hover:bg-red-700 w-full 
-                    flex items-center justify-center'>
-                    <button>Deletar</button>
-                </Link>
-            </div>
-
+        {/* Botões de ação */}
+        <div className="flex gap-4">
+          <Link to={`/editartema/${tema.id}`}>
+            <FaEdit
+              className="text-blue-600 hover:text-blue-800 cursor-pointer text-lg"
+              title="Editar"
+            />
+          </Link>
+          <Link to={`/deletartema/${tema.id}`}>
+            <FaTrash
+              className="text-red-600 hover:text-red-800 cursor-pointer text-lg"
+              title="Deletar"
+            />
+          </Link>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default CardTema
+export default CardTema;
